@@ -43,7 +43,7 @@ export default {
         name: null,
       },
       cart: [],
-      browserCart: document.getElementById("cart"),
+      browserCart: null,
     };
   },
   methods: {
@@ -70,6 +70,7 @@ export default {
             toaster: "b-toaster-top-center",
           });
           this.cart.push(response);
+          this.browserCart = document.getElementById("cart");
           this.browserCart.innerHTML = this.cart;
           console.log(this.cart);
         } else {
