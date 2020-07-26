@@ -87,11 +87,6 @@ export default {
 
 <style lang="scss">
 @import "../variables.scss";
-.title {
-  font-size: 48px;
-  margin: 44px 0;
-  text-align: left;
-}
 .card-link {
   color: inherit;
 }
