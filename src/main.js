@@ -4,9 +4,17 @@ import Home from "./components/Home";
 import VueRouter from "vue-router";
 import request from "./request";
 
+//use request class
 Vue.prototype.$request = request;
 
 Vue.config.productionTip = false;
+
+//Add bootstrap-vue
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
 //Cria os objetos para as rotas
 const routes = [
@@ -14,7 +22,7 @@ const routes = [
     name: "Home",
     path: "/",
     component: Home,
-  }
+  },
 ];
 
 //Instacia o router do vue
