@@ -5,7 +5,7 @@
       v-for="item in items"
       v-bind:key="item.id"
       :id="item.id"
-      @click="addToCart(item.id, item.name)"
+      @click="add(item.id, item.name)"
     >
       <a class="card-link">
         <b-card
@@ -19,15 +19,11 @@
             <img :src="require(`@/assets/${item.image}`)" />
           </div>
 
-          <h4 class="card-title">
-            {{ item.name }}
-          </h4>
+          <h4 class="card-title">{{ item.name }}</h4>
 
-          <b-card-text class="message">
-            Adicionar ao carrinho
-          </b-card-text>
+          <b-card-text class="message">Adicionar ao carrinho</b-card-text>
 
-          <b-card-text class="price"> R$ {{ item.price }} </b-card-text>
+          <b-card-text class="price">R$ {{ item.price }}</b-card-text>
         </b-card>
       </a>
     </div>
@@ -50,7 +46,7 @@ export default {
   },
   methods: {
     showAll() {
-      this.$request.getAll().then((response) => {
+      this.$controllers.getAll().then((response) => {
         if (!response.error) {
           this.items = response;
           console.log(this.items);
@@ -59,15 +55,22 @@ export default {
         }
       });
     },
-    addToCart(id, name) {
+    add(id, name) {
       this.game.id = id;
       this.game.name = name;
-      this.$bvToast.toast("foi adicionado ao carrinho", {
-        title: this.game.name,
-        variant: "success",
-        toaster: "b-toaster-top-center",
+
+      this.$controllers.addToCart(id, name).then((response) => {
+        if (!response.error) {
+          console.log("chamando controllers", response);
+          this.$bvToast.toast("foi adicionado ao carrinho", {
+            title: this.game.name,
+            variant: "success",
+            toaster: "b-toaster-top-center",
+          });
+        } else {
+          throw new Error(response.error);
+        }
       });
-      console.log(id, name);
     },
   },
   mounted() {
@@ -86,10 +89,10 @@ export default {
 .card-link {
   color: inherit;
 }
-.card {
+.card.mb-2 {
   border: none;
-  margin-bottom: 104px !important;
   position: relative;
+  margin-bottom: 104px !important;
   .img-holder {
     display: flex;
     height: 230px;
