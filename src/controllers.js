@@ -12,13 +12,4 @@ export default class controllers {
     Object.assign({}, dataObj);
     return dataObj;
   }
-
-  static async addToCart(id, name) {
-    let item = {
-      id: id,
-      name: name,
-    };
-
-    return item;
-  }
 }

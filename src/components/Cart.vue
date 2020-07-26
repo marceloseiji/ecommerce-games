@@ -4,7 +4,7 @@
       <div class="cart-part head">
         <h3 class="title">Carrinho</h3>
       </div>
-      <div class="cart-part body">
+      <div id="cart-body" class="cart-part body">
         <b-img :src="require(`@/assets/cart-icon.svg`)" fluid alt="Cart Image"></b-img>
         <b-card-text class="text">Até o momento seu carrinho está vazio</b-card-text>
       </div>
@@ -32,6 +32,9 @@ export default {
 .cart {
   margin-top: 44px;
   min-height: 325px;
+  .card {
+    margin-left: 10px;
+  }
   .card-body {
     display: flex;
     flex-direction: column;
@@ -47,6 +50,12 @@ export default {
   }
   .body {
     justify-content: center;
+    .text {
+      font-size: 14px;
+      font-weight: 300;
+      color: $color3;
+      margin-top: 16px;
+    }
   }
   .footer {
     justify-content: flex-end;
