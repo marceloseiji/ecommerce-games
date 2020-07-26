@@ -42,6 +42,8 @@ export default {
         id: null,
         name: null,
       },
+      cart: [],
+      browserCart: document.getElementById("cart"),
     };
   },
   methods: {
@@ -49,7 +51,7 @@ export default {
       this.$controllers.getAll().then((response) => {
         if (!response.error) {
           this.items = response;
-          console.log(this.items);
+          console.info("Items loaded");
         } else {
           throw new Error(response.error);
         }
@@ -67,6 +69,9 @@ export default {
             variant: "success",
             toaster: "b-toaster-top-center",
           });
+          this.cart.push(response);
+          this.browserCart.innerHTML = this.cart;
+          console.log(this.cart);
         } else {
           throw new Error(response.error);
         }
