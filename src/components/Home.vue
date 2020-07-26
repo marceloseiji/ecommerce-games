@@ -35,5 +35,10 @@ export default {
 @import "../variables.scss";
 .home {
   font-family: $font;
+  .title {
+    font-size: 48px;
+    margin: 44px 0;
+    text-align: left;
+  }
 }
 </style>
