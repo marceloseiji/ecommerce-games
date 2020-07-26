@@ -2,10 +2,10 @@ import Vue from "vue";
 import App from "./App.vue";
 import Home from "./components/Home";
 import VueRouter from "vue-router";
-import request from "./request";
+import controllers from "./controllers";
 
-//use request class
-Vue.prototype.$request = request;
+//Controllers request cart
+Vue.prototype.$controllers = controllers;
 
 Vue.config.productionTip = false;
 
