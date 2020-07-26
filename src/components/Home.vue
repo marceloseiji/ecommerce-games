@@ -1,11 +1,11 @@
 <template>
   <div class="container home">
     <div class="row">
-      <div class="col-10">
+      <div class="col-9">
         <h1 class="title">Games</h1>
         <GameCard />
       </div>
-      <div class="col-2">
+      <div class="col-3">
         <Cart />
       </div>
     </div>
@@ -35,7 +35,7 @@ export default {
 @import "../variables.scss";
 .home {
   font-family: $font;
-  .title {
+  h1 {
     font-size: 48px;
     margin: 44px 0;
     text-align: left;
