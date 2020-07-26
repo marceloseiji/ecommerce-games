@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" id="cart">
     Carrinho
   </div>
 </template>
@@ -9,27 +9,9 @@ export default {
   name: "Cart",
   props: {},
   data() {
-    return {
-      items: null,
-      showThis: null,
-      game: {
-        id: null,
-        name: null,
-      },
-    };
+    return {};
   },
-  methods: {
-    addToCart(id, name) {
-      this.game.id = id;
-      this.game.name = name;
-      this.$bvToast.toast("foi adicionado ao carrinho", {
-        title: this.game.name,
-        variant: "success",
-        toaster: "b-toaster-top-center",
-      });
-      console.log(id, name);
-    },
-  },
+  methods: {},
 };
 </script>
 
