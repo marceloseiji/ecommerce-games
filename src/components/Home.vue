@@ -1,8 +1,8 @@
 <template>
   <div class="container home">
-    <h1 class="title">Games</h1>
     <div class="row">
       <div class="col-10">
+        <h1 class="title">Games</h1>
         <GameCard />
       </div>
       <div class="col-2">
@@ -20,14 +20,14 @@ export default {
   name: "Home",
   components: {
     GameCard,
-    Cart,
+    Cart
   },
   props: {},
   data() {
     return {};
   },
   methods: {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 
