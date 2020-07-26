@@ -1,6 +1,10 @@
 <template>
   <div class="hello">
-    <h1>Homes</h1>
+    <h1>Home</h1>
+    <div class="col-12 col-md-4" v-for="item in items" v-bind:key="item.id">
+      {{ item.name }}:
+      {{ item.price }}
+    </div>
   </div>
 </template>
 
@@ -11,12 +15,15 @@ export default {
   },
   data(){
     return {
-
+      items: null
     }
   },
   methods: {
     showAll() {
-      console.log("This ");
+      this.$request.getAll().then((response) => {
+        this.items = response;
+        console.log(this.items);
+      })
     }
   },
   mounted() {
