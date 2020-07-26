@@ -2,10 +2,12 @@ import Vue from "vue";
 import App from "./App.vue";
 import Home from "./components/Home";
 import VueRouter from "vue-router";
-import controllers from "./controllers";
 
-//Controllers request cart
+//Controllers request, cart methods
+import controllers from "./controllers";
+import cart from "./components/Cart";
 Vue.prototype.$controllers = controllers;
+Vue.prototype.$cart = cart.methods;
 
 Vue.config.productionTip = false;
 
