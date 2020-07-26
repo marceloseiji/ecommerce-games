@@ -13,7 +13,12 @@ export default class controllers {
     return dataObj;
   }
 
-  static async addToCart() {
-    return "Added";
+  static async addToCart(id, name) {
+    let item = {
+      id: id,
+      name: name,
+    };
+
+    return item;
   }
 }
