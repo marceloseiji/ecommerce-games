@@ -69,6 +69,12 @@ export default {
           throw new Error(response.error);
         }
       });
+
+      this.$bvToast.toast("foi adicionado ao carrinho", {
+        title: this.game.name,
+        variant: "success",
+        toaster: "b-toaster-top-center"
+      });
     }
   },
   mounted() {
