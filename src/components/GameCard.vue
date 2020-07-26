@@ -5,7 +5,7 @@
       v-for="item in items"
       v-bind:key="item.id"
       :id="item.id"
-      @click="add(item.id, item.name)"
+      @click="callAdd(item.id, item.name, item.price)"
     >
       <a class="card-link">
         <b-card
@@ -40,7 +40,8 @@ export default {
       showThis: null,
       game: {
         id: null,
-        name: null
+        name: null,
+        price: null
       },
       cart: [],
       browserCart: null
@@ -57,23 +58,14 @@ export default {
         }
       });
     },
-    add(id, name) {
+    //Send item added to cart component, use cart method
+    callAdd(id, name, price) {
       this.game.id = id;
       this.game.name = name;
+      this.game.price = price;
 
-      this.$controllers.addToCart(id, name).then(response => {
-        if (!response.error) {
-          console.log("chamando controllers", response);
-          this.$bvToast.toast("foi adicionado ao carrinho", {
-            title: this.game.name,
-            variant: "success",
-            toaster: "b-toaster-top-center"
-          });
-          this.cart.push(response);
-          this.browserCart = document.getElementById("cart");
-          this.browserCart.innerHTML = this.cart;
-          console.log(this.cart);
-        } else {
+      this.$cart.addToCart(this.game).then(response => {
+        if (response.error) {
           throw new Error(response.error);
         }
       });
