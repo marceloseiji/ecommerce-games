@@ -13,7 +13,7 @@
           img-top
           tag="article"
           style="max-width: 20rem;"
-          class="mb-2"
+          class="mb-2 game-card"
         >
           <div class="img-holder">
             <img :src="require(`@/assets/${item.image}`)" />
@@ -40,15 +40,15 @@ export default {
       showThis: null,
       game: {
         id: null,
-        name: null,
+        name: null
       },
       cart: [],
-      browserCart: null,
+      browserCart: null
     };
   },
   methods: {
     showAll() {
-      this.$controllers.getAll().then((response) => {
+      this.$controllers.getAll().then(response => {
         if (!response.error) {
           this.items = response;
           console.info("Items loaded");
@@ -61,13 +61,13 @@ export default {
       this.game.id = id;
       this.game.name = name;
 
-      this.$controllers.addToCart(id, name).then((response) => {
+      this.$controllers.addToCart(id, name).then(response => {
         if (!response.error) {
           console.log("chamando controllers", response);
           this.$bvToast.toast("foi adicionado ao carrinho", {
             title: this.game.name,
             variant: "success",
-            toaster: "b-toaster-top-center",
+            toaster: "b-toaster-top-center"
           });
           this.cart.push(response);
           this.browserCart = document.getElementById("cart");
@@ -77,11 +77,11 @@ export default {
           throw new Error(response.error);
         }
       });
-    },
+    }
   },
   mounted() {
     this.showAll();
-  },
+  }
 };
 </script>
 
@@ -95,7 +95,7 @@ export default {
 .card-link {
   color: inherit;
 }
-.card.mb-2 {
+.card.mb-2.game-card {
   border: none;
   position: relative;
   margin-bottom: 104px !important;
