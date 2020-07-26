@@ -12,6 +12,7 @@
     "bootstrap-vue": "^2.15.0",
     "core-js": "^3.6.5",
     "popper.js": "^1.16.1",
+    "portal-vue": "^2.1.7",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4"
   },

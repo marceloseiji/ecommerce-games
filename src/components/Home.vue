@@ -7,8 +7,9 @@
         v-for="item in items"
         v-bind:key="item.id"
         :id="item.id"
+        @click="addToCart(item.id, item.name)"
       >
-        <a class="card-link" href="#">
+        <a class="card-link">
           <b-card
             img-alt="Image"
             img-top
@@ -44,6 +45,10 @@ export default {
     return {
       items: null,
       showThis: null,
+      game: {
+        id: null,
+        name: null,
+      },
     };
   },
   methods: {
@@ -56,6 +61,16 @@ export default {
           throw new Error(response.error);
         }
       });
+    },
+    addToCart(id, name) {
+      this.game.id = id;
+      this.game.name = name;
+      this.$bvToast.toast("foi adicionado ao carrinho", {
+        title: this.game.name,
+        variant: "success",
+        toaster: "b-toaster-top-center",
+      });
+      console.log(id, name);
     },
   },
   mounted() {
@@ -96,13 +111,11 @@ export default {
         font-size: 16px;
         font-weight: 300;
         margin: 11px 0 2px 0;
-        transition: 0.5s ease;
       }
       .card-text {
         color: $color2;
         font-weight: 800;
         font-size: 16px;
-        transition: 0.5s ease;
       }
       .message {
         position: absolute;
@@ -114,6 +127,7 @@ export default {
       }
     }
     &:hover {
+      cursor: pointer;
       .message {
         opacity: 1;
       }
