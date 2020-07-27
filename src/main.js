@@ -3,11 +3,11 @@ import App from "./App.vue";
 
 //Controllers request, cart methods
 import controllers from "./controllers";
-import cart from "./components/Cart";
 Vue.prototype.$controllers = controllers;
-Vue.prototype.$cart = cart.methods;
 
 Vue.config.productionTip = false;
+
+export const bus = new Vue();
 
 //Add bootstrap-vue
 import "bootstrap/dist/css/bootstrap.css";

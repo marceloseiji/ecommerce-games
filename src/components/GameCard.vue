@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { bus } from "../main";
+
 export default {
   name: "GameCard",
   props: {},
@@ -38,6 +40,7 @@ export default {
     return {
       items: null,
       showThis: null,
+      cartVector: [],
       game: {
         id: null,
         name: null,
@@ -63,12 +66,9 @@ export default {
       this.game.id = id;
       this.game.name = name;
       this.game.price = price;
+      this.cartVector.push(this.game);
 
-      this.$cart.addToCart(this.game).then(response => {
-        if (response.error) {
-          throw new Error(response.error);
-        }
-      });
+      bus.$emit("addToCartBusEvent", this.cartVector);
 
       this.$bvToast.toast("foi adicionado ao carrinho", {
         title: this.game.name,
