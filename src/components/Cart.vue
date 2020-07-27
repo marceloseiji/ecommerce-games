@@ -40,11 +40,12 @@
         </div>
         <div class="shipping">
           Frete
-          <span>R$: {{ shipping }}</span>
+          <span v-if="shipping != 0">R$: {{ shipping }}</span>
+          <span v-if="shipping == 0" style="color: green">R$: Grátis</span>
         </div>
         <div class="total">
           Total
-          <span>R$: 100,00</span>
+          <span>R$: {{ total }}</span>
         </div>
       </div>
 
@@ -67,7 +68,9 @@ export default {
       cartItems: null,
       shipping: "0,00",
       subtotal: "0,00",
-      subtotalCalc: null
+      subtotalCalc: null,
+      total: "0,00",
+      totalCalc: null
     };
   },
   methods: {
@@ -75,7 +78,6 @@ export default {
   },
   created() {
     bus.$on("addToCartBusEvent", data => {
-      console.log(data);
       this.cartVector.push({ ...data });
       this.cartItems = Object.assign({}, this.cartVector);
 
@@ -86,6 +88,21 @@ export default {
       this.subtotalCalc = this.cartVector.map(element => {
         return element.price;
       });
+      this.subtotal = this.subtotalCalc.reduce(function(
+        acumulator,
+        actualValue
+      ) {
+        return acumulator + actualValue;
+      });
+      this.subtotal = this.subtotal.toFixed(2);
+      if (this.subtotal > 250) {
+        this.shipping = 0;
+      }
+
+      //Total calc
+      this.total = (
+        parseFloat(this.shipping) + parseFloat(this.subtotal)
+      ).toFixed(2);
     });
   }
 };
