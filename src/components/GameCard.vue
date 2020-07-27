@@ -112,7 +112,7 @@ export default {
     }
     .card-text {
       color: $color2;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 16px;
     }
     .message {
