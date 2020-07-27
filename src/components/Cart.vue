@@ -14,7 +14,7 @@
         <b-card-text v-if="cartItems == null" class="text">Até o momento seu carrinho está vazio</b-card-text>
 
         <div v-for="item in cartItems" v-bind:key="item.id" class="mini-card">
-          <b-icon icon="plus-circle-fill" class="remove-icon" @click="remove(item.id)"></b-icon>
+          <b-icon icon="plus-circle-fill" class="remove-icon" @click="remove(item.id, item.name)"></b-icon>
           <b-card no-body class="overflow-hidden">
             <b-row no-gutters>
               <b-col md="4" class="img-holder">
@@ -77,7 +77,7 @@ export default {
     };
   },
   methods: {
-    remove(id) {
+    remove(id, name) {
       //Find element to remove index
       this.itemIndexRemove = this.cartVector.findIndex((element, index) => {
         if (element.id === id) {
@@ -88,7 +88,12 @@ export default {
 
       //Remove from array the element to remove
       this.cartVector.splice(this.itemIndexRemove, 1);
-      console.log(id);
+
+      this.$bvToast.toast("foi removido do carrinho", {
+        title: name,
+        variant: "danger",
+        toaster: "b-toaster-top-center"
+      });
     }
   },
   created() {
