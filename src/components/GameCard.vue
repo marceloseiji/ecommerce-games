@@ -68,9 +68,8 @@ export default {
       this.game.name = name;
       this.game.price = price;
       this.game.image = image;
-      this.cartVector.push(this.game);
 
-      bus.$emit("addToCartBusEvent", this.cartVector);
+      bus.$emit("addToCartBusEvent", this.game);
 
       this.$bvToast.toast("foi adicionado ao carrinho", {
         title: this.game.name,
