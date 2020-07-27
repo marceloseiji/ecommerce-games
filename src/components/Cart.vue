@@ -14,6 +14,7 @@
         <b-card-text v-if="cartItems == null" class="text">Até o momento seu carrinho está vazio</b-card-text>
 
         <div v-for="item in cartItems" v-bind:key="item.id" class="mini-card">
+          <b-icon icon="plus-circle-fill" class="remove-icon" @click="remove(item.id)"></b-icon>
           <b-card no-body class="overflow-hidden">
             <b-row no-gutters>
               <b-col md="4" class="img-holder">
@@ -50,7 +51,7 @@
       </div>
 
       <div class="cart-part footer">
-        <b-button class="btn" href="#" variant="primary">Finzalizar compra</b-button>
+        <b-button class="btn" href="#" variant="primary">Finalizar compra</b-button>
       </div>
     </b-card>
   </div>
@@ -70,11 +71,25 @@ export default {
       subtotal: "0,00",
       subtotalCalc: null,
       total: "0,00",
-      totalCalc: null
+      totalCalc: null,
+      itemIdRemove: null,
+      itemIndexRemove: null
     };
   },
   methods: {
-    addToCart() {}
+    remove(id) {
+      //Find element to remove index
+      this.itemIndexRemove = this.cartVector.findIndex((element, index) => {
+        if (element.id === id) {
+          console.log(index);
+          return index;
+        }
+      });
+
+      //Remove from array the element to remove
+      this.cartVector.splice(this.itemIndexRemove, 1);
+      console.log(id);
+    }
   },
   created() {
     bus.$on("addToCartBusEvent", data => {
@@ -149,6 +164,24 @@ export default {
     flex-direction: column;
     margin-bottom: 8px;
     .mini-card {
+      position: relative;
+      &:hover {
+        .remove-icon {
+          opacity: 1;
+          cursor: pointer;
+          transition: 0.5s ease;
+        }
+      }
+      .remove-icon {
+        color: #3486e6;
+        transform: rotate(45deg);
+        position: absolute;
+        right: -9px;
+        top: 50%;
+        z-index: 1;
+        opacity: 0;
+        transition: 0.5s ease;
+      }
       .card-body {
         padding: 7px 9px;
       }
