@@ -5,7 +5,7 @@
       v-for="item in items"
       v-bind:key="item.id"
       :id="item.id"
-      @click="callAdd(item.id, item.name, item.price)"
+      @click="callAdd(item.id, item.name, item.price, item.image)"
     >
       <a class="card-link">
         <b-card
@@ -44,7 +44,8 @@ export default {
       game: {
         id: null,
         name: null,
-        price: null
+        price: null,
+        image: null
       },
       cart: [],
       browserCart: null
@@ -62,10 +63,11 @@ export default {
       });
     },
     //Send item added to cart component, use cart method
-    callAdd(id, name, price) {
+    callAdd(id, name, price, image) {
       this.game.id = id;
       this.game.name = name;
       this.game.price = price;
+      this.game.image = image;
       this.cartVector.push(this.game);
 
       bus.$emit("addToCartBusEvent", this.cartVector);
