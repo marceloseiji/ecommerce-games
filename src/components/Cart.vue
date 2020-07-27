@@ -112,7 +112,7 @@ export default {
 @import "../variables.scss";
 
 .cart {
-  margin-top: 44px;
+  margin-top: 55px;
   min-height: 325px;
   .card {
     margin-left: 10px;
@@ -179,6 +179,11 @@ export default {
   }
   .footer {
     justify-content: flex-end;
+    .btn {
+      background-color: $color2;
+      padding: 15px 0.75rem;
+      font-weight: 600;
+    }
   }
   .values {
     margin-bottom: 22px;
