@@ -1,11 +1,11 @@
 <template>
   <div class="container home">
     <div class="row">
-      <div class="col-9">
+      <div class="col-sm-12 col-md-9">
         <h1 class="title">Games</h1>
         <GameCard />
       </div>
-      <div class="col-3">
+      <div class="col-sm-12 col-md-3">
         <Cart />
       </div>
     </div>

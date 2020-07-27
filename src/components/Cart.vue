@@ -41,7 +41,7 @@
         <div class="shipping">
           Frete
           <span v-if="shipping != 0">R$: {{ shipping }}</span>
-          <span v-if="shipping == 0" style="color: green">R$: Grátis</span>
+          <span v-if="shipping == 0" style="color: green">Grátis</span>
         </div>
         <div class="total">
           Total

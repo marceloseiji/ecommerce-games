@@ -97,6 +97,7 @@ export default {
     display: flex;
     height: 230px;
     background-color: $color1;
+    border-radius: 3px;
     img {
       width: 180px;
       height: 180px;
