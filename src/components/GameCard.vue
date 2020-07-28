@@ -40,7 +40,7 @@ export default {
     return {
       items: null,
       showThis: null,
-      cartVector: [],
+      itemsVector: [],
       game: {
         id: null,
         name: null,
@@ -55,7 +55,9 @@ export default {
     showAll() {
       this.$controllers.getAll().then(response => {
         if (!response.error) {
-          Object.assign({}, response);
+          this.itemsVector = response; //Armazena Vetor
+
+          Object.assign({}, response); //Transforma vetor em objeto
           this.items = response;
           console.info("Items loaded");
         } else {
@@ -77,11 +79,40 @@ export default {
         variant: "success",
         toaster: "b-toaster-top-center"
       });
+    },
+    sortElements(data) {
+      switch (data) {
+        case "Ordem alfabética":
+          this.itemsVector.sort((a, b) => {
+            let comparison = 0;
+
+            if (a.name > b.name) {
+              comparison = 1;
+            } else if (a.name < b.name) {
+              comparison = -1;
+            }
+            return comparison;
+          });
+
+          this.items = Object.assign({}, this.itemsVector); //Transforma vetor em objeto
+
+          console.log(this.itemsVector);
+          break;
+
+        case "Popularidade":
+          console.log(data);
+          break;
+        case "Preço":
+          console.log(data);
+          break;
+        default:
+          console.log("Nothing changed");
+      }
     }
   },
   created() {
     bus.$on("SortElements", data => {
-      console.log(data);
+      this.sortElements(data);
     });
   },
   mounted() {
