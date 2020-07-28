@@ -151,6 +151,7 @@ export default {
 .cart {
   margin-top: 52px;
   min-height: 325px;
+  min-width: 273px;
   .card {
     margin-left: 10px;
   }
