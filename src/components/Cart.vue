@@ -266,5 +266,11 @@ export default {
       }
     }
   }
+  @media (max-width: 768px) {
+    margin: 0;
+    .card {
+      margin: 5px;
+    }
+  }
 }
 </style>

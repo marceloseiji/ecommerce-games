@@ -195,5 +195,9 @@ export default {
       opacity: 0;
     }
   }
+  @media (max-width: 768px) {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
 }
 </style>

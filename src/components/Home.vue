@@ -50,5 +50,12 @@ export default {
     margin: 44px 0;
     text-align: left;
   }
+  .row {
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column-reverse;
+      flex-wrap: wrap;
+    }
+  }
 }
 </style>

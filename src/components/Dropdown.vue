@@ -47,5 +47,11 @@ export default {
       margin-top: 10px;
     }
   }
+  @media (max-width: 768px) {
+    align-content: flex-start;
+    .dropdown {
+      width: 100%;
+    }
+  }
 }
 </style>
