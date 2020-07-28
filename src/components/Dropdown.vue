@@ -1,12 +1,14 @@
 <template>
   <b-dropdown :text="filtro" variant="outline-secondary" class="m-2">
-    <b-dropdown-item @click="filtro = 'Preço'" href="#">Preço</b-dropdown-item>
-    <b-dropdown-item @click="filtro = 'Popularidade'" href="#">Popularidade</b-dropdown-item>
-    <b-dropdown-item @click="filtro = 'Ordem alfabética'" href="#">Ordem alfabética</b-dropdown-item>
+    <b-dropdown-item @click="filtro = 'Preço'; sort()" href="#">Preço</b-dropdown-item>
+    <b-dropdown-item @click="filtro = 'Popularidade'; sort()" href="#">Popularidade</b-dropdown-item>
+    <b-dropdown-item @click="filtro = 'Ordem alfabética'; sort()" href="#">Ordem alfabética</b-dropdown-item>
   </b-dropdown>
 </template>
 
 <script>
+import { bus } from "../main";
+
 export default {
   name: "Dropdown",
   props: {},
@@ -15,7 +17,11 @@ export default {
       filtro: "Filtros"
     };
   },
-  methods: {},
+  methods: {
+    sort() {
+      bus.$emit("SortElements", this.filtro);
+    }
+  },
   mounted() {}
 };
 </script>

@@ -79,6 +79,11 @@ export default {
       });
     }
   },
+  created() {
+    bus.$on("SortElements", data => {
+      console.log(data);
+    });
+  },
   mounted() {
     this.showAll();
   }
