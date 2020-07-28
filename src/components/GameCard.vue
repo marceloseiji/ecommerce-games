@@ -93,21 +93,42 @@ export default {
             }
             return comparison;
           });
-
-          this.items = Object.assign({}, this.itemsVector); //Transforma vetor em objeto
-
-          console.log(this.itemsVector);
           break;
 
         case "Popularidade":
-          console.log(data);
+          this.itemsVector.sort((a, b) => {
+            let comparison = 0;
+            const aScore = parseInt(a.score);
+            const bScore = parseInt(b.score);
+
+            if (aScore < bScore) {
+              comparison = 1;
+            } else if (aScore > bScore) {
+              comparison = -1;
+            }
+            return comparison;
+          });
           break;
+
         case "Preço":
-          console.log(data);
+          this.itemsVector.sort((a, b) => {
+            let comparison = 0;
+            const aPrice = parseInt(a.price);
+            const bPrice = parseInt(b.price);
+
+            if (aPrice > bPrice) {
+              comparison = 1;
+            } else if (aPrice < bPrice) {
+              comparison = -1;
+            }
+            return comparison;
+          });
           break;
+
         default:
           console.log("Nothing changed");
       }
+      this.items = Object.assign({}, this.itemsVector); //Transforma vetor em objeto
     }
   },
   created() {
