@@ -8,8 +8,6 @@ export default class controllers {
     );
     const res = await fetch(request);
     const dataObj = await res.json();
-
-    Object.assign({}, dataObj);
     return dataObj;
   }
 }

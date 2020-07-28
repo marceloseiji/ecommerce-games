@@ -55,6 +55,7 @@ export default {
     showAll() {
       this.$controllers.getAll().then(response => {
         if (!response.error) {
+          Object.assign({}, response);
           this.items = response;
           console.info("Items loaded");
         } else {
