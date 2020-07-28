@@ -94,35 +94,52 @@ export default {
         variant: "danger",
         toaster: "b-toaster-top-center"
       });
+      this.itemsUpdate();
+    },
+    itemsUpdate() {
+      //Update items from cart
+      this.cartItems = Object.assign({}, this.cartVector); //Objects creator
+      this.valueCalcs();
+    },
+    valueCalcs() {
+      if (this.cartVector.length > 0) {
+        //Calc of shipping
+        this.shipping = (this.cartVector.length * 10).toFixed(2);
+
+        //Calc of subtotal
+        this.subtotalCalc = this.cartVector.map(element => {
+          return element.price;
+        });
+        this.subtotal = this.subtotalCalc.reduce(function(
+          acumulator,
+          actualValue
+        ) {
+          return acumulator + actualValue;
+        });
+        this.subtotal = this.subtotal.toFixed(2);
+        if (this.subtotal > 250) {
+          this.shipping = 0;
+        }
+
+        //Total calc
+        this.total = (
+          parseFloat(this.shipping) + parseFloat(this.subtotal)
+        ).toFixed(2);
+      } else {
+        this.shipping = "0,00";
+        this.subtotal = "0,00";
+        this.subtotalCalc = null;
+        this.total = "0,00";
+        this.cartItems = null;
+      }
     }
   },
   created() {
     bus.$on("addToCartBusEvent", data => {
-      this.cartVector.push({ ...data });
-      this.cartItems = Object.assign({}, this.cartVector);
+      this.cartVector.push({ ...data }); //Vector creator
+      this.cartItems = Object.assign({}, this.cartVector); //Objects creator
 
-      //Calc of shipping
-      this.shipping = (this.cartVector.length * 10).toFixed(2);
-
-      //Calc of subtotal
-      this.subtotalCalc = this.cartVector.map(element => {
-        return element.price;
-      });
-      this.subtotal = this.subtotalCalc.reduce(function(
-        acumulator,
-        actualValue
-      ) {
-        return acumulator + actualValue;
-      });
-      this.subtotal = this.subtotal.toFixed(2);
-      if (this.subtotal > 250) {
-        this.shipping = 0;
-      }
-
-      //Total calc
-      this.total = (
-        parseFloat(this.shipping) + parseFloat(this.subtotal)
-      ).toFixed(2);
+      this.valueCalcs();
     });
   }
 };
@@ -132,7 +149,7 @@ export default {
 @import "../variables.scss";
 
 .cart {
-  margin-top: 55px;
+  margin-top: 52px;
   min-height: 325px;
   .card {
     margin-left: 10px;

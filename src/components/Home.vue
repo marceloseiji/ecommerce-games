@@ -2,7 +2,15 @@
   <div class="container home">
     <div class="row">
       <div class="col-sm-12 col-md-9">
-        <h1 class="title">Games</h1>
+        <div class="row">
+          <div class="col-sm-12 col-md-6 title-holder">
+            <h1 class="title">Games</h1>
+          </div>
+          <div class="col-sm-12 col-md-6 dropdown-holder">
+            <Dropdown />
+          </div>
+        </div>
+
         <GameCard />
       </div>
       <div class="col-sm-12 col-md-3">
@@ -15,12 +23,14 @@
 <script>
 import GameCard from "./GameCard";
 import Cart from "./Cart";
+import Dropdown from "./Dropdown";
 
 export default {
   name: "Home",
   components: {
     GameCard,
-    Cart
+    Cart,
+    Dropdown
   },
   props: {},
   data() {
